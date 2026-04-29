@@ -194,7 +194,7 @@
 
 \chapter{Introducción}
 \setcounter{page}{1}
-\section{Que es git?}
+\section{Que es Git?}
 GIT (Global Information Tracker) es un \textbf{sistema de control de versiones distribuido}, gratuito y de código
 abierto, diseñado para \textbf{gestionar el historial de cambios} en el código fuente de proyectos de software de forma
 rápida y eficiente. Permite a los desarrolladores rastrear modificaciones, volver a versiones anteriores y trabajar
@@ -213,7 +213,7 @@ Es importante distinguirlos: \textbf{Git no es GitHub}.
 Git es la herramienta que funciona en nuestra computadora (local), mientras que GitHub es un servicio web que usa Git para facilitar la colaboración y la publicación de repositorios.
 Se puede usar Git sin GitHub, y también existen otras plataformas similares (por ejemplo, GitLab o Bitbucket).
 
-\section{Por que usamos git?}
+\section{Por qué usamos Git?}
 Usar Git y GitHub mejora el flujo de trabajo porque permite:
 \begin{itemize}[leftmargin=*]
   \item Guardar el historial completo de cambios: sabés qué cambió, cuándo y quién lo cambió.
@@ -231,14 +231,14 @@ Técnicamente, es una carpeta normal con un subdirectorio oculto llamado .git do
 esa información. Ese .git es el corazón del repositorio: sin él, sería solo una carpeta común.
 Hay dos tipos principales:
 
-\textbf{Local} — vive en tu máquina. Ahí trabajas, hacés commits, creás ramas. Es completamente funcional sin internet.
+\textbf{Local} — vive en tu máquina. Ahí trabajás, hacés commits, creás ramas. Es completamente funcional sin internet.
 
 \textbf{Remoto} — vive en un servidor (GitHub, GitLab, etc.). Sirve como punto central para compartir el trabajo con otros o como respaldo.
 
 \section{Commit}
 Un commit es una instantánea (foto) del estado de tu proyecto en un momento dado, guardada permanentemente
 en la historia del repositorio.
-Cada vez que hacés git commit, Git toma todos los cambios que preparaste (los que están en el staging area) y
+Cada vez que hacés un commit, Git toma todos los cambios que preparaste (los que están en el staging area) y
 los congela en un paquete inmutable que incluye:
 
 \begin{itemize}
@@ -553,13 +553,13 @@ Existen dos formas de hacer un merge:
 
 \end{itemize}
 
-Por defecto, git realizará un merge fast-forward siempre que sea posible.
+Por defecto, Git realizará un merge fast-forward siempre que sea posible.
 
 Al realizar un merge, es posible que surja un conflicto: esto se da si las dos ramas modificaron
 el mismo fragmento del mismo archivo de formas distintas, Git no sabe cuál versión conservar y te
 pide que lo resuelvas a mano. Ya sea eligiendo una de las dos versiones, o combinandolas.
 
-\chapter{Usando git en la práctica}
+\chapter{Usando Git en la práctica}
 
 \section{Instalación}
 
@@ -577,7 +577,7 @@ Para buscar ayuda rápida de comandos:
 %comandos git init, git add, git commit, git status, git log.
 %ver el historial
 
-\section{Subir repositorio a github}
+\section{Subir repositorio a GitHub}
 %crear clave ssh
 %crear repositorio en github.
 %vincular repositorio local con remoto
