@@ -243,13 +243,27 @@ los congela en un paquete inmutable que incluye:
 \begin{itemize}
   \item \textbf{El contenido} — cómo quedaron los archivos en ese momento.
   \item \textbf{Metadatos} — autor, fecha y hora.
-  \item \textbf{Un mensaje} — descripción de qué cambió y por qué.
-  \item \textbf{Una referencia al commit anterior} — así se forma la cadena de historia.
-  
+  \item \textbf{Mensaje} — descripción de qué cambió y por qué.
+  \item \textbf{Referencia al commit anterior} — así se forma la cadena de historia.
 \end{itemize}
 
 Esa cadena es clave: cada commit apunta al que lo precedió, formando una línea de tiempo que podés
 recorrer hacia atrás en cualquier momento.
+
+\begin{figure}[h]
+  \centering
+  \begin{tikzpicture}
+    % Commit DAG
+    \gitDAG[grow right sep = 2em]{
+      A -- B -- C
+    };
+  \end{tikzpicture}
+  \label{fig:commit_dag}
+  \caption{Linea de tiempo de commits}
+\end{figure}
+
+En la Figura~\ref{fig:commit_dag} se muestra una secuencia de commits A, B y C, donde cada uno apunta
+al anterior, formando una historia lineal del proyecto.
 
 Un commit es como el botón de guardar partida en un videojuego. No solo guardás
 el progreso actual, sino que podés tener múltiples puntos de guardado y volver exactamente a
@@ -258,10 +272,9 @@ cualquiera de ellos si algo sale mal.
 
 Git identifica cada commit con un hash SHA-1, un código único como a3f4c91....
 Ese hash es calculado a partir del contenido del commit, de este modo git garantiza que el contenido
-no fue corrompido o alterado, lo que hace a los commits confiables e inmutables.
+no fue corrompido o alterado, lo que hace a los commits confiables e inmutables. \\
 
-
-El \textbf{commit message} debe describir de forma clara qué se cambió y por qué.
+El mensaje o \textbf{commit message} debe describir de forma clara qué se cambió y por qué.
 Buenas prácticas recomendadas:
 \begin{itemize}
   \item usar frases breves y concretas;
