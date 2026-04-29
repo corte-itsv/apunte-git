@@ -311,17 +311,6 @@ En resumen, el flujo de trabajo típico en Git implica:
     \label{fig:git_workflow}
 \end{figure}
 
-Estas areas permiten clasificar el estado de los archivos en el proyecto:
-\begin{itemize}[leftmargin=*]
-  \item \textbf{untracked}: archivo nuevo que Git aún no está siguiendo;
-  \item \textbf{modified}: archivo rastreado que fue modificado en el directorio de trabajo, pero todavía no fue agregado al área de preparación;
-  \item \textbf{staged}: archivo cuyos cambios fueron agregados al \textbf{staging area} y quedarán incluidos en el próximo commit;
-  \item \textbf{committed}: cambios almacenados permanentemente en el repositorio local como parte del historial.
-\end{itemize}
-
-Además, al colaborar suele aparecer un \textbf{remote repository} (por ejemplo en GitHub), que es la copia alojada en un servidor
-para compartir cambios con otras personas.
-
 \section{Branch}
 Una branch (o rama) en Git es una \textbf{línea de tiempo paralela} dentro de tu proyecto.
 Las ramas son utilizadas para desarrollar funcionalidades aisladas unas de otras. La rama main o master
