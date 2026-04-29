@@ -321,15 +321,44 @@ para compartir cambios con otras personas.
 Una branch (o rama) en Git es una \textbf{línea de tiempo paralela} dentro de tu proyecto.
 Las ramas son utilizadas para desarrollar funcionalidades aisladas unas de otras. La rama main o master
 es la rama ''por defecto'' cuando creas un repositorio, y es donde se encuentra la \textbf{versión estable del código}.
+
 Durante el desarrollo, es común crear ramas para trabajar en nuevas características, corregir errores
-o experimentar sin afectar la rama principal. Una vez que el trabajo en una rama está completo y probado,
-se puede integrar de nuevo a main mediante un merge. Este enfoque es útil tambien a la hora de trabajar
+o experimentar sin afectar la rama principal. Este enfoque es útil a la hora de trabajar
 colaborativamente, ya que cada desarrollador puede tener su propia rama para sus cambios, evitando modificar
 el código sobre el que alguien más está trabajando.
 
 Cada rama es esencialmente una referencia o puntero a un commit específico en la historia del proyecto.
 Cuando haces un commit en esa rama, el puntero se mueve hacia adelante, estando siempre apuntando al
 último commit de esa línea de desarrollo.
+
+\begin{figure}[h]
+  \centering
+  \begin{tikzpicture}[scale=1.5, transform shape]
+    % Commit DAG
+    \gitDAG[grow right sep = 2em]{
+      A -- B -- { 
+        C,
+        D -- E,
+      }
+    };
+    % main branch
+    \gitbranch
+      {master}     % node name and text 
+      {right=of C} % node placement
+      {C}          % target
+    % HEAD reference
+    \gitbranch
+      {devel}     % node name and text 
+      {right=of E} % node placement
+      {E}          % target
+  \end{tikzpicture}
+  \caption{Ejemplo de ramas en Git}
+  \label{fig:git_branches}
+\end{figure}
+
+En la figura~\ref{fig:git_branches} se muestra una rama principal (master) que avanza con los commits
+A, B y C, mientras que una rama de desarrollo (devel) se bifurca en D y E. Cada rama apunta al último
+commit de su línea de desarrollo.
 
 \section{Puntero HEAD}
 Git utiliza un puntero llamado HEAD para \textbf{indicar en qué lugar del árbol estás parado actualmente}.
