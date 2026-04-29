@@ -27,7 +27,7 @@
 \usepackage{minted}
 \usepackage{subcaption}
 \usepackage{gitdags}
-
+\usepackage[hidelinks]{hyperref}
 
 \newcommand\numeq[1]{(\ref{#1})}
 \newcommand\eq[1]{Eq.~(\ref{#1})}
@@ -189,6 +189,7 @@
 \maketitle
 
 \chapter{Introducción}
+\setcounter{page}{1}
 \section{Que es git?}
 GIT (Global Information Tracker) es un sistema de
 control de versiones distribuido, gratuito y de código
@@ -389,10 +390,10 @@ Normalmente HEAD apunta a la rama activa, lo que significa que cualquier commit 
       {master}       % target
   \end{tikzpicture}
   \caption{Puntero HEAD apuntando a la rama master}
-  \label{fig:git_head}
+  \label{fig:git_head_master}
 \end{figure}
 
-En la figura~\ref{fig:git_head} se muestra el puntero HEAD apuntando a la rama master, lo que indica
+En la figura~\ref{fig:git_head_master} se muestra el puntero HEAD apuntando a la rama master, lo que indica
 que estamos trabajando en esa rama. Si hacemos un commit, se agregará despues de C, avanzando la rama master.
 
 Es posible apuntar HEAD a un commit específico, este estado se llama ''detached HEAD'' y es útil para revisar versiones anteriores,
@@ -423,10 +424,10 @@ pero no nos permite hacer commits permanentes sin crear una nueva rama.
       {B}       % target
   \end{tikzpicture}
   \caption{Puntero HEAD apuntando al commit B (detached HEAD)}
-  \label{fig:git_head}
+  \label{fig:git_head_B}
 \end{figure}
 
-En la figura~\ref{fig:git_head} se muestra el puntero HEAD apuntando al commit B, lo que indica que estamos
+En la figura~\ref{fig:git_head_B} se muestra el puntero HEAD apuntando al commit B, lo que indica que estamos
 en un estado de detached HEAD. En este estado no deben hacerse commits, ya que no estarán asociados a ninguna
 rama y podrían perderse fácilmente.
 
