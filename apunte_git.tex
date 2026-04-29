@@ -231,14 +231,14 @@ Técnicamente, es una carpeta normal con un subdirectorio oculto llamado .git do
 esa información. Ese .git es el corazón del repositorio: sin él, sería solo una carpeta común.
 Hay dos tipos principales:
 
-\textbf{Local} — vive en tu máquina. Ahí trabajás, hacés commits, creás ramas. Es completamente funcional sin internet.
+\textbf{Local} — vive en tu máquina. Ahí trabajes, haces commits, crees ramas. Es completamente funcional sin internet.
 
 \textbf{Remoto} — vive en un servidor (GitHub, GitLab, etc.). Sirve como punto central para compartir el trabajo con otros o como respaldo.
 
 \section{Commit}
 Un commit es una instantánea (foto) del estado de tu proyecto en un momento dado, guardada permanentemente
 en la historia del repositorio.
-Cada vez que hacés un commit, Git toma todos los cambios que preparaste (los que están en el staging area) y
+Cada vez que haces un commit, Git toma todos los cambios que preparaste (los que están en el staging area) y
 los congela en un paquete inmutable que incluye:
 
 \begin{itemize}
@@ -287,8 +287,8 @@ Buenas prácticas recomendadas:
 
 \section{Áreas de un proyecto Git}
 El flujo de trabajo de Git se organiza en tres áreas principales: el \textbf{working directory} (area de trabajo),
- donde se realizan las modificaciones; el \textbf{staging area} (area de preparación), donde se
-eleccionan los cambios que formarán parte del próximo commit; y el
+donde se realizan las modificaciones; el \textbf{staging area} (area de preparación), donde se
+seleccionan los cambios que formarán parte del próximo commit; y el
 \textbf{local repository} (repositorio local), donde se almacenan de forma permanente las instantáneas confirmadas. Este
 enfoque permite un control preciso sobre qué cambios se registran en cada commit.
 
@@ -383,7 +383,7 @@ Normalmente HEAD apunta a la rama activa, lo que significa que cualquier commit 
 \end{figure}
 
 En la figura~\ref{fig:git_head_master} se muestra el puntero HEAD apuntando a la rama master, lo que indica
-que estamos trabajando en esa rama. Si hacemos un commit, se agregará despues de C, avanzando la rama master.
+que estamos trabajando en esa rama. Si hacemos un commit, se agregará después de C, avanzando la rama master.
 
 Es posible apuntar HEAD a un commit específico, este estado se llama ''detached HEAD'' y es útil para revisar versiones anteriores,
 pero no nos permite hacer commits permanentes sin crear una nueva rama.
@@ -482,7 +482,7 @@ Existen dos formas de hacer un merge:
             {above=of master} % node placement
             {master}          % target
         \end{tikzpicture}
-        \subcaption{\ldots{} Y despues del merge Fast-forward}
+        \subcaption{\ldots{} Y después del merge Fast-forward}
       \end{subfigure}
       \caption{Merge Fast-forward}
       \label{fig:merge_fast_forward}
@@ -541,7 +541,7 @@ Existen dos formas de hacer un merge:
             {above=of master} % node placement
             {master}          % target
         \end{tikzpicture}
-        \subcaption{\ldots{} Y despues del merge No-Fast-forward}
+        \subcaption{\ldots{} Y después del merge No-Fast-forward}
       \end{subfigure}
       \caption{Merge No-Fast-forward}
       \label{fig:merge_no_fast_forward}
@@ -557,7 +557,7 @@ Por defecto, Git realizará un merge fast-forward siempre que sea posible.
 
 Al realizar un merge, es posible que surja un conflicto: esto se da si las dos ramas modificaron
 el mismo fragmento del mismo archivo de formas distintas, Git no sabe cuál versión conservar y te
-pide que lo resuelvas a mano. Ya sea eligiendo una de las dos versiones, o combinandolas.
+pide que lo resuelvas a mano. Ya sea eligiendo una de las dos versiones, o combinándolas.
 
 \chapter{Usando Git en la práctica}
 
