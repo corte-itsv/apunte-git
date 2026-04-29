@@ -429,21 +429,135 @@ mover el puntero HEAD.
 
 \section{Merge}
 
-\textbf{Merge} significa unir dos ramas.
-Existen dos formas de hacer un merge.
+\textbf{Merge} significa unir dos ramas. A la hora de hacer un merge, Git toma los cambios de una rama (la rama fuente)
+y los integra en otra rama (la rama destino). En otras palabras, hacer un merge es traer los cambios de una rama fuente
+a una rama de destino. Git tomará la rama actual (HEAD) como destino.
+Existen dos formas de hacer un merge:
 
 \begin{itemize}
   \item \textbf{Fast-forward} (avance rápido):
-    Si la rama de destino no tiene nuevos commits desde que se creo la rama que queremos unir (las
+    Si la rama de destino no tiene nuevos commits desde que se creó la rama fuente (las
     ramas no se han separado), Git simplemente mueve el puntero de la rama de destino hacia adelante,
-    apuntando al mismo commit que la rama que estamos uniendo. En este caso, no se crea un nuevo
+    apuntando al mismo commit que la rama fuente. En este caso, no se crea un nuevo
     commit de merge y la historia es se mantiene lineal.
+
+    \begin{figure}[h]
+      \begin{subfigure}[b]{\textwidth}
+        \centering
+        \begin{tikzpicture}[scale=1.5, transform shape]
+          % Commit DAG
+          \gitDAG[grow right sep = 2em]{
+            A -- B -- C -- D -- E
+          };
+          % Branch
+          \gitbranch
+            {devel}     % node name and text 
+            {above=of E} % node placement
+            {E}          % target
+          \gitbranch
+            {master}     % node name and text 
+            {above=of B} % node placement
+            {B}          % target
+          % HEAD reference
+          \gitHEAD
+            {above=of master} % node placement
+            {master}          % target
+        \end{tikzpicture}
+        \subcaption{Antes\ldots}
+      \end{subfigure}
+    
+      \begin{subfigure}[b]{\textwidth}
+        \centering
+        \begin{tikzpicture}[scale=1.5, transform shape]
+          \gitDAG[grow right sep = 2em]{
+            A -- B -- C -- D -- E
+          };
+          % Branch
+          \gitbranch
+            {master}      % node name and text 
+            {above=of E} % node placement
+            {E}          % target
+          \gitbranch
+            {devel}     % node name and text 
+            {left=of master} % node placement
+            {E}          % target
+          % HEAD reference
+          \gitHEAD
+            {above=of master} % node placement
+            {master}          % target
+        \end{tikzpicture}
+        \subcaption{\ldots{} Y despues del merge Fast-forward}
+      \end{subfigure}
+      \caption{Merge Fast-forward}
+      \label{fig:merge_fast_forward}
+    \end{figure}
+
+    En la figura \ref{fig:merge_fast_forward} se muestra un commit desde la rama devel hacia master. Antes del merge, master apunta
+    a B y devel apunta a E. Después del merge Fast-forward, master también apunta a E, avanzando su puntero
+    sin crear un nuevo commit de merge.
+
   \item \textbf{No-fast-forward} (sin avance rápido):
     Si ambas ramas avanzaron por separado, Git crea un nuevo commit especial que tiene dos ''padres'' el último
     commit de cada rama. Es la unión real de las dos historias.
+
+    \begin{figure}[h]
+      \begin{subfigure}[b]{\textwidth}
+        \centering
+        \begin{tikzpicture}[scale=1.5, transform shape]
+          % Commit DAG
+          \gitDAG[grow right sep = 2em]{
+            A -- B -- {E, C -- D}
+          };
+          % Branch
+          \gitbranch
+            {devel}     % node name and text 
+            {right=of D} % node placement
+            {D}          % target
+          \gitbranch
+            {master}     % node name and text 
+            {right=of E} % node placement
+            {E}          % target
+          % HEAD reference
+          \gitHEAD
+            {above=of master} % node placement
+            {master}          % target
+        \end{tikzpicture}
+        \subcaption{Antes\ldots}
+      \end{subfigure}
+    
+      \begin{subfigure}[b]{\textwidth}
+        \centering
+        \begin{tikzpicture}[scale=1.5, transform shape]
+          \gitDAG[grow right sep = 2em]{
+            A -- B -- {E, C -- D} -- F
+          };
+          % Branch
+          \gitbranch
+            {devel}     % node name and text 
+            {right=of D} % node placement
+            {D}          % target
+          \gitbranch
+            {master}     % node name and text 
+            {right=of F} % node placement
+            {F}          % target
+          % HEAD reference
+          \gitHEAD
+            {above=of master} % node placement
+            {master}          % target
+        \end{tikzpicture}
+        \subcaption{\ldots{} Y despues del merge No-Fast-forward}
+      \end{subfigure}
+      \caption{Merge No-Fast-forward}
+      \label{fig:merge_no_fast_forward}
+    \end{figure}
+
+    En la figura \ref{fig:merge_no_fast_forward} se muestra un commit desde la rama devel hacia master. Antes del merge,
+    master apunta a E y devel apunta a D. Después del merge No-Fast-forward, master apunta a un nuevo commit F que tiene
+    dos padres: E (último commit de master) y D (último commit de devel). Este nuevo commit F representa la unión de las dos ramas.
+
 \end{itemize}
 
-Por defecto, git intentará realizar un merge fast-forward.
+Por defecto, git realizará un merge fast-forward siempre que sea posible.
 
 Al realizar un merge, es posible que surja un conflicto: esto se da si las dos ramas modificaron
 el mismo fragmento del mismo archivo de formas distintas, Git no sabe cuál versión conservar y te
