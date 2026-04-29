@@ -363,8 +363,72 @@ commit de su línea de desarrollo.
 \section{Puntero HEAD}
 Git utiliza un puntero llamado HEAD para \textbf{indicar en qué lugar del árbol estás parado actualmente}.
 Normalmente HEAD apunta a la rama activa, lo que significa que cualquier commit que hagas se agregará a esa rama.
+
+\begin{figure}[h]
+  \centering
+  \begin{tikzpicture}[scale=1.5, transform shape]
+    % Commit DAG
+    \gitDAG[grow right sep = 2em]{
+      A -- B -- { 
+        C,
+        D -- E,
+      }
+    };
+    % main branch
+    \gitbranch
+      {master}     % node name and text 
+      {right=of C} % node placement
+      {C}          % target
+    % HEAD reference
+    \gitbranch
+      {devel}     % node name and text 
+      {right=of E} % node placement
+      {E}          % target
+    \gitHEAD
+      {above=of master} % node placement
+      {master}       % target
+  \end{tikzpicture}
+  \caption{Puntero HEAD apuntando a la rama master}
+  \label{fig:git_head}
+\end{figure}
+
+En la figura~\ref{fig:git_head} se muestra el puntero HEAD apuntando a la rama master, lo que indica
+que estamos trabajando en esa rama. Si hacemos un commit, se agregará despues de C, avanzando la rama master.
+
 Es posible apuntar HEAD a un commit específico, este estado se llama ''detached HEAD'' y es útil para revisar versiones anteriores,
 pero no nos permite hacer commits permanentes sin crear una nueva rama.
+
+\begin{figure}[h]
+  \centering
+  \begin{tikzpicture}[scale=1.5, transform shape]
+    % Commit DAG
+    \gitDAG[grow right sep = 2em]{
+      A -- B -- { 
+        C,
+        D -- E,
+      }
+    };
+    % main branch
+    \gitbranch
+      {master}     % node name and text 
+      {right=of C} % node placement
+      {C}          % target
+    % HEAD reference
+    \gitbranch
+      {devel}     % node name and text 
+      {right=of E} % node placement
+      {E}          % target
+    \gitHEAD
+      {above=of B} % node placement
+      {B}       % target
+  \end{tikzpicture}
+  \caption{Puntero HEAD apuntando al commit B (detached HEAD)}
+  \label{fig:git_head}
+\end{figure}
+
+En la figura~\ref{fig:git_head} se muestra el puntero HEAD apuntando al commit B, lo que indica que estamos
+en un estado de detached HEAD. En este estado no deben hacerse commits, ya que no estarán asociados a ninguna
+rama y podrían perderse fácilmente.
 
 Veremos que el comando \texttt{git checkout} se usa para cambiar de rama o para moverse a un commit específico, lo que no es mas que
 mover el puntero HEAD.
