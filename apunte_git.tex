@@ -595,6 +595,19 @@ git version 2.53.0
 
 \section{Configuración inicial}
 
+Antes de empezar a usar Git, es importante configurar tu identidad para que los commits tengan un autor asociado. Esto se hace con los siguientes comandos:
+\begin{verbatim}
+$ git config --global user.name "Tu Nombre"
+$ git config --global user.email "Tu email"
+\end{verbatim}
+
+Podemos comprobar la configuración con:
+\begin{verbatim}
+$ git config --list
+user.name=Tu Nombre
+user.email=Tu email
+\end{verbatim}
+
 \section{Como obtener ayuda}
 Para buscar ayuda rápida de comandos:
 \begin{itemize}[leftmargin=*]
