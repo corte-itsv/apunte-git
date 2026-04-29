@@ -27,7 +27,8 @@
 \usepackage{minted}
 \usepackage{subcaption}
 \usepackage{gitdags}
-\usepackage[hidelinks]{hyperref}
+\usepackage{fancyvrb}
+\usepackage{hyperref}
 
 \newcommand\numeq[1]{(\ref{#1})}
 \newcommand\eq[1]{Eq.~(\ref{#1})}
@@ -578,50 +579,178 @@ que tus cambios se fusionen con la rama principal.
 Es basicamente la solicitud de merge de la rama donde esta tu trabajo hacia la otra rama del proyecto, pero en el repositorio remoto.
 
 \chapter{Usando Git en la práctica}
+Aprenderemos git desde la terminal ya que, aunque existen interfaces gráficas que pueden facilitar su uso, conociendo los conceptos
+básicos y comandos funcamentales, es muy sencillo después usar cualqiera de esas interfaces gráficas, ya que todas se utilizan estos
+mismos comandos por debajo.
 
 \section{Instalación}
 
 En sistemas basados en Debian/Ubuntu:
-\begin{verbatim}
+
+\begin{Verbatim}[ frame=single, fontsize=\small, baselinestretch=1.2 ]
 $ sudo apt update
 $ sudo apt install git
-\end{verbatim}
+\end{Verbatim}
 
 Podemos comprombar la instalación con:
-\begin{verbatim}
+\begin{Verbatim}[ frame=single, fontsize=\small, baselinestretch=1.2 ]
 $ git --version
 git version 2.53.0
-\end{verbatim}
+\end{Verbatim}
 
 \section{Configuración inicial}
 
 Antes de empezar a usar Git, es importante configurar tu identidad para que los commits tengan un autor asociado. Esto se hace con los siguientes comandos:
-\begin{verbatim}
+\begin{Verbatim}[ frame=single, fontsize=\small, baselinestretch=1.2 ]
 $ git config --global user.name "Tu Nombre"
 $ git config --global user.email "Tu email"
-\end{verbatim}
+\end{Verbatim}
 
 Podemos comprobar la configuración con:
-\begin{verbatim}
+\begin{Verbatim}[ frame=single, fontsize=\small, baselinestretch=1.2 ]
 $ git config --list
 user.name=Tu Nombre
 user.email=Tu email
-\end{verbatim}
+\end{Verbatim}
 
 \section{Como obtener ayuda}
 Es de utilidad conocer los comandos de ayuda de Git para resolver dudas o aprender sobre nuevas funcionalidades. Algunos comandos útiles son:
-\begin{verbatim}
+\begin{Verbatim}[ frame=single, fontsize=\small, baselinestretch=1.2, breaklines=true ]
 $ git help <comando>  # Muestra la ayuda detallada de un comando específico
 $ git <comando> --help  # Otra forma de mostrar la ayuda de un comando
-$ git help -a  # Lista todos los comandos disponibles
-\end{verbatim}
+$ git help # Muestra una lista de comandos disponibles y su descripción breve 
+\end{Verbatim}
 
-\section{Creando mi primer repositorio}
+\section{Creando un repositorio vacio}
 %comandos git init, git add, git commit, git status, git log.
 %ver el historial
+Para crear nuestro primer repositorio, primero debemos crear un directorio para nuestro proyecto y luego inicializar un
+repositorio Git dentro de ese directorio:
+\begin{Verbatim}[ frame=single, fontsize=\small, baselinestretch=1.2 ]
+$ mkdir mi-proyecto
+$ cd mi-proyecto
+$ git init
+Initialized empty Git repository in .../mi-proyecto/.git/
+\end{Verbatim}
+Esto crea un nuevo repositorio Git vacío en el directorio mi-proyectol. Ahora podemos empezar a agregar archivos,
+hacer cambios y registrar esos cambios con commits.
+
+Para comprobar que el repositorio se creó correctamente, podemos usar el comando \texttt{git status}:
+\begin{Verbatim}[ frame=single, fontsize=\small, baselinestretch=1.2 ]
+$ git status
+On branch main
+
+No commits yet
+
+nothing to commit (create/copy files and use "git add" to track)
+\end{Verbatim}
+
+\section{Realizando mi primer commit}
+A modo de ejemplo, podemos crear un archivo README.md y agregarlo al repositorio:
+\begin{Verbatim}[ frame=single, fontsize=\small, baselinestretch=1.2 ]
+$ echo "# Mi Proyecto" > README.md
+\end{Verbatim}
+
+Si ejecutamos \texttt{git status}, veremos que el archivo README.md no está siendo rastreado por Git:
+\begin{Verbatim}[ frame=single, fontsize=\small, baselinestretch=1.2 ]
+$ git status
+On branch main
+
+No commits yet
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	README.md
+
+nothing added to commit but untracked files present (use "git add" to track)
+\end{Verbatim}
+
+Para agregar el archivo al área de preparación (staging area), usamos el comando \texttt{git add}:
+
+\begin{Verbatim}[ frame=single, fontsize=\small, baselinestretch=1.2 ]
+$ git add README.md
+\end{Verbatim}
+
+Ahora el archivo README.md está listo para ser incluido en el próximo commit. Podemos verificarlo con \texttt{git status}:
+
+\begin{Verbatim}[ frame=single, fontsize=\small, baselinestretch=1.2 ]
+$ git status
+On branch main
+
+No commits yet
+
+Changes to be committed:
+  (use "git rm --cached <file>..." to unstage)
+	new file:   README.md
+\end{Verbatim}
+
+Finalmente, para registrar el cambio en el historial del repositorio, hacemos un commit con el comando \texttt{git commit}:
+\begin{Verbatim}[ frame=single, fontsize=\small, baselinestretch=1.2 ]
+$ git commit -m "Agrega README.md"
+[main (root-commit) d37249c] Agraga README.md
+ 1 file changed, 1 insertion(+)
+ create mode 100644 README.md
+\end{Verbatim}
+
+Luego de hacer el commit, podemos ver el historial de commits con el comando \texttt{git log}:
+\begin{Verbatim}[ frame=single, fontsize=\small, baselinestretch=1.2 ]
+$ git log
+commit d37249c965d8ccadb4aca126435412ae11314233 (HEAD -> main)
+Author: Tu Nombre <tu email>
+Date:   Wed Apr 29 01:40:03 2026 -0300
+
+    Agraga README.md
+
+\end{Verbatim}
+
+En el historial de commits se muestra el hash del commit, el autor, la fecha y el mensaje del commit.
+Tambien podemos observar que el puntero HEAD apunta a main, por lo que estamos trabajando en dicha rama.
+Y main, a su vez, apunta al commit d37249c, que es el commit que acabamos de hacer.
 
 \section{Subir repositorio a GitHub}
 %crear clave ssh
+Para poder autenticarte con GitHub desde tu computadora, es recomendable generar una clave SSH y agregarla a tu cuenta
+de GitHub. Esto te permitirá realizar operaciones como push y pull sin tener que ingresar tus credenciales cada vez.
+Para esto, puedes usar el siguiente comando para generar una nueva clave SSH:
+
+\begin{Verbatim}[ frame=single, fontsize=\small, baselinestretch=1.2,  commandchars=\\\{\}]
+$ ssh-keygen
+Generating public/private ed25519 key pair.
+Enter file in which to save the key (/home/corte/.ssh/id_ed25519): 
+Created directory '/home/corte/.ssh'.
+Enter passphrase for "/home/corte/.ssh/id_ed25519" (empty for no passphrase): 
+Enter same passphrase again: 
+Your identification has been saved in /home/corte/.ssh/id_ed25519
+Your public key has been saved in \textcolor{blue}{/home/corte/.ssh/id_ed25519.pub}
+The key fingerprint is:
+SHA256:HyLPAploiqQfNDg3sallUeyaLr5ZX5J7eDUxYJYwNQg corte@Corte-ThinkPad
+The key's randomart image is:
++--[ED25519 256]--+
+|   Eoo+o.        |
+|   ....=.        |
+|  o.  o .        |
+| . *.o   o       |
+|o.%o+ . S +      |
+|+Xoo ..+ = .     |
+|=... oo.+ o      |
+|..+...++         |
+|.=o  oo          |
++----[SHA256]-----+
+\end{Verbatim}
+
+Damos tres veces a enter para aceptar las opciones por defecto y generar la clave sin passphrase.
+Luego, debemos agregar el contenido de la clave pública a nuestra cuenta de GitHub.
+Para esto, podemos usar el siguiente comando para mostrar el contenido de la clave pública:
+\begin{Verbatim}[ frame=single, fontsize=\small, baselinestretch=1.2, breaklines=true ]
+$ cat ~/.ssh/id_ed25519.pub    #Prestar atanción a la ruta del archivo, debe ser la misma que se mostró al generar la clave.
+ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAHyLPAploiqQfNDg3sallUeyaLr5ZX5J7eDUxYJYwNQg corte@Corte-ThinkPad
+\end{Verbatim}
+
+Copiamos el contenido del archivo, y vamos a GitHub\textrightarrow Settings\textrightarrow SSH and GPG keys\textrightarrow New SSH key,
+pegamos el contenido y guardamos la nueva clave SSH.
+
+Si tienen problemas con esta parte, les dejo un video explicativo: \url{https://www.youtube.com/watch?v=_vlrPpxs2Go}
+
 %crear repositorio en github.
 %vincular repositorio local con remoto
 
