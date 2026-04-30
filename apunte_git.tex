@@ -202,25 +202,27 @@ rápida y eficiente. Permite a los desarrolladores rastrear modificaciones, volv
 colaborativamente sin sobrescribir el trabajo de otros.
 
 Cuando decimos que Git es un sistema de control de versiones \textbf{distribuido}, significa que
-cada copia del repositorio contiene el historial completo del proyecto.
-No dependemos de un único servidor para trabajar: podemos hacer commits, crear ramas y consultar historial sin conexión.
+cada copia del repositorio \textbf{contiene el historial completo} del proyecto.
+No dependemos de un único servidor para trabajar: podemos hacer commits, crear ramas y consultar historial \textbf{sin conexión.}
 Si un servidor remoto falla, cualquier copia del repositorio sirve para recuperar la totalidad del contenido.
 
 \section{Que es GitHub?}
-\textbf{GitHub} es una plataforma en línea para alojar repositorios Git y colaborar con otras personas.
+\textbf{GitHub} es una \textbf{plataforma en línea} para alojar repositorios Git y \textbf{colaborar con otras personas.}
 Permite compartir código, revisar cambios, trabajar en equipo mediante ramas y pull requests, y mantener un respaldo remoto del proyecto.
 
 Es importante distinguirlos: \textbf{Git no es GitHub}.
-Git es la herramienta que funciona en nuestra computadora (local), mientras que GitHub es un servicio web que usa Git para facilitar la colaboración y la publicación de repositorios.
-Se puede usar Git sin GitHub, y también existen otras plataformas similares (por ejemplo, GitLab o Bitbucket).
+Git es la herramienta que funciona en nuestra computadora (local), mientras que GitHub es un servicio web que usa Git para
+facilitar la colaboración y la publicación de repositorios.
+\textbf{Se puede usar Git sin GitHub}, y también existen otras plataformas similares (por ejemplo, GitLab o Bitbucket).
 
 \section{Por qué usamos Git?}
 Usar Git y GitHub mejora el flujo de trabajo porque permite:
 \begin{itemize}[leftmargin=*]
-  \item Guardar el historial completo de cambios: sabés qué cambió, cuándo y quién lo cambió.
-  \item Podés volver a cualquier versión anterior si algo se rompe o si querés revisar cómo era el código antes de un cambio específico.
-  \item Permite colaborar de forma ordenada, integrando aportes de varios desarrolladores sin pisar el trabajo de otros.
-  \item Facilita la revisión de código, ya que podés comparar cambios y discutirlos antes de integrarlos al proyecto.
+  \item Guardar el historial completo de cambios: sabés \textbf{qué cambió, cuándo y quién lo cambió.}
+  \item Podés \textbf{volver a cualquier versión anterior} si algo se rompe o si querés revisar cómo era
+     el código antes de un cambio específico.
+  \item Permite \textbf{colaborar de forma ordenada}, integrando aportes de varios desarrolladores sin pisar el trabajo de otros.
+  \item Facilita la \textbf{revisión de código}, ya que podés \textbf{comparar cambios} y discutirlos antes de integrarlos al proyecto.
   \item Respaldo remoto: si tu computadora falla, tu trabajo no se pierde porque está guardado en GitHub.
 \end{itemize}
 
@@ -310,7 +312,7 @@ En resumen, el flujo de trabajo típico en Git implica:
 
 \section{Branch}
 Una branch (o rama) en Git es una \textbf{línea de tiempo paralela} dentro de tu proyecto.
-Las ramas son utilizadas para desarrollar funcionalidades aisladas unas de otras. La rama main o master
+Las ramas son utilizadas para desarrollar funcionalidades aisladas unas de otras. La rama \textbf{main o master}
 es la rama ''por defecto'' cuando creas un repositorio, y es donde se encuentra la \textbf{versión estable del código}.
 
 Durante el desarrollo, es común crear ramas para trabajar en nuevas características, corregir errores
@@ -318,9 +320,9 @@ o experimentar sin afectar la rama principal. Este enfoque es útil a la hora de
 colaborativamente, ya que cada desarrollador puede tener su propia rama para sus cambios, evitando modificar
 el código sobre el que alguien más está trabajando.
 
-Cada rama es esencialmente una referencia o puntero a un commit específico en la historia del proyecto.
-Cuando haces un commit en esa rama, el puntero se mueve hacia adelante, estando siempre apuntando al
-último commit de esa línea de desarrollo.
+Cada rama es esencialmente una \textbf{referencia o puntero} a un commit específico en la historia del proyecto.
+Cuando haces un commit en esa rama, el puntero se mueve hacia adelante, estando \textbf{siempre apuntando al
+último commit de esa línea de desarrollo.}
 
 \begin{figure}[h]
   \centering
