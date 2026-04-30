@@ -491,7 +491,7 @@ Existen dos formas de hacer un merge:
       \label{fig:merge_fast_forward}
     \end{figure}
 
-    En la figura \ref{fig:merge_fast_forward} se muestra un commit desde la rama devel hacia master. Antes del merge, master apunta
+    En la figura \ref{fig:merge_fast_forward} se muestra un merge desde la rama devel hacia master. Antes del merge, master apunta
     a B y devel apunta a E. Después del merge Fast-forward, master también apunta a E, avanzando su puntero
     sin crear un nuevo commit de merge.
 
@@ -550,7 +550,7 @@ Existen dos formas de hacer un merge:
       \label{fig:merge_no_fast_forward}
     \end{figure}
 
-    En la figura \ref{fig:merge_no_fast_forward} se muestra un commit desde la rama devel hacia master. Antes del merge,
+    En la figura \ref{fig:merge_no_fast_forward} se muestra un merge desde la rama devel hacia master. Antes del merge,
     master apunta a E y devel apunta a D. Después del merge No-Fast-forward, master apunta a un nuevo commit F que tiene
     dos padres: E (último commit de master) y D (último commit de devel). Este nuevo commit F representa la unión de las dos ramas.
 
